@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import uk.ac.westminster.product_api.dto.DigitalProduct;
+import uk.ac.westminster.product_api.dto.PhysicalProduct;
 import uk.ac.westminster.product_api.dto.Product;
 
 /**
@@ -17,9 +19,20 @@ import uk.ac.westminster.product_api.dto.Product;
 @Service
 public class ProductService {
     
-    private List<Product> products = new ArrayList<>(); 
-    private Long nextId = 1L; 
-    
+    private List<Product> products = new ArrayList<>();
+    private Long nextId = 1L;
+
+    public ProductService() {
+        Product dp = new DigitalProduct(
+                1L, "Test DP", 99.55, "asas/asas", 56.6
+        );
+        Product pd = new PhysicalProduct(2L, "Test Physical", 50.5, 501.5,"X: 50 Y 60");
+        products.add(dp);
+        nextId++;
+        products.add(pd);
+        nextId++;
+    }
+
     public List<Product> getAllProducts(){
         return products;
     }
